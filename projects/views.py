@@ -1,28 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import Project
 from .forms import ProjectForm
-
-
-# projectslist = [
-#     {
-#         'id':'1',
-#         'title':'ecommerce website',
-#         'description':'fully functional'
-#
-#     },
-#     {
-#         'id':'2',
-#         'title':'prtfolio website',
-#         'description':'portfolio building main functional'
-#     },
-#     {
-#         'id':'3',
-#         'title':'social network website',
-#         'description':'open source functional'
-#     }
-# ]
-
 
 def projects(request):
     projects = Project.objects.all()
@@ -40,6 +20,8 @@ def project(request,pk):
     return render(request, 'projects/single-project.html',
                    {'project' : projectObj, 'tags':tags})
 
+
+@login_required(login_url="login")
 def createProject(request):
     form = ProjectForm()
 
@@ -51,7 +33,7 @@ def createProject(request):
     context = {'form' : form}
     return render(request, "projects/project_form.html",context)
 
-
+@login_required(login_url="login")
 def updateProject(request,pk):
     project = Project.objects.get(id=pk)
     form = ProjectForm(instance=project)
