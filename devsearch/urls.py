@@ -16,7 +16,7 @@ urlpatterns = [
     path('', include('projects.urls')),
     # path('projects/',projects, name="projects"),
     # path('project/<str:pk>/',project, name="project"),
-    path(' ', include('users.urls')),
+    path('users/', include('users.urls')),
 ]
 
 
