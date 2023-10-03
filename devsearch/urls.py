@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.http import HttpResponse
 from django.conf import settings
 from django.conf.urls.static import static
@@ -13,6 +13,8 @@ urlpatterns = [
     path('', include('projects.urls')),
 
     path('users/', include('users.urls')),
+
+    path('api/', include('api.urls')),
 
     path('reset_password/', auth_views.PasswordResetView.as_view(
         template_name="reset_password.html"),name="reset_password"),
