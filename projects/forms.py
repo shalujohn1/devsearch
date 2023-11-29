@@ -24,7 +24,7 @@ class ReviewForm(ModelForm):
         fields = ['value', 'body']
 
         labels = {
-            'value': 'place your note',
+            'value': 'place your vote',
             'body': 'Add a comment with your vote'
         }
 
