@@ -12,11 +12,11 @@
         </div>
 
         <div class="hero-section__search">
-          <form class="form" action="#" method="get">
+          <form id='searchForm' class="form" action="{% url 'projects' %}" method="get">
             <div class="form__field">
               <label for="formInput#search">Search By Projects </label>
-              <input class="input input--text" id="formInput#search" type="text" name="text"
-                placeholder="Search by Project Title" />
+              <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                placeholder="Search by Project Title" value="{{search_query}}" />
             </div>
 
             <input class="btn btn--sub btn--lg" type="submit" value="Search" />
@@ -34,7 +34,7 @@
           <div class="column">
             <div class="card project">
               <a href="{% url 'project' project.id %}" class="project">
-                <img class="project__thumbnail" src="{{project.featured_image.url}}" alt="project thumbnail" />
+                <img class="project__thumbnail" src="{{project.imageURL}}" alt="project thumbnail"/>
 
 
                 <div class="card__body">
@@ -55,27 +55,17 @@
               </a>
             </div>
           </div>
-            {% endfor %}
+          {% endfor %}
         </div>
       </div>
     </section>
 
-
+    {% include 'pagination.html' with queryset=projects custom_range=custom_range  %}
 
   </main>
 
 
 
 
-
-<ul>
-    {% for project in projects %}
-
-<!--    <li>name:<a href="{% url 'project' project.id %}">{{project.title}}</a> -&#45;&#45; {{project.created}}</li>-->
-
-    {% endfor %}
-</ul>
-
 {% endblock content %}
 
-<!--{% include 'navbar.html' %}-->
